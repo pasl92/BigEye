@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/PC/AndroidStudioProjects/BigEye/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BigEye/app/src/main/res/drawable/round_btn.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BigEye/app/src/main/res/font/poppins_bold.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/BigEye/app/src/main/res/layout/activity_main.xml" value="0.22" />
       </map>
     </option>
   </component>
