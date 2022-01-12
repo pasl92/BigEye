@@ -1,6 +1,15 @@
 <resources>
+<!--    Welcome page-->
     <string name="app_name">BigEye</string>
     <string name="login_button">Login</string>
     <string name="singup_button">SingUp</string>
     <string name="slogan_text">Keep an eye on your sites wherever you are.</string>
+
+<!--    Login page-->
+    <string name="login_with_email">Login with email</string>
+    <string name="your_email_address">Your Email Address</string>
+    <string name="your_password">Your password</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
