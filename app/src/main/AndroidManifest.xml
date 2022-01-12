@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BigEye">
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".SingupActivity"
             android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
