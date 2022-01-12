@@ -13,10 +13,5 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-            binding.backButton.setOnClickListener{
-                var backActivity: Intent = Intent(applicationContext, MainActivity::class.java)
-                startActivity(backActivity)
-            }
     }
 }
