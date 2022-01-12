@@ -43,7 +43,8 @@
         android:textColor="@color/grey_app"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView4"
@@ -61,12 +62,13 @@
         android:layout_height="60dp"
         android:layout_marginTop="90dp"
         android:backgroundTint="@color/grey_app"
-        android:textColor="@color/grey_app"
         android:ems="10"
         android:inputType="textPassword"
+        android:textColor="@color/grey_app"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/button"
