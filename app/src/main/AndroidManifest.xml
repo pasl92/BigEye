@@ -11,7 +11,8 @@
         android:theme="@style/Theme.BigEye">
         <activity
             android:name=".SingupActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".LoginActivity"
             android:exported="false"
