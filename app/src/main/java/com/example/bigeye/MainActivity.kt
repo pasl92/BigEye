@@ -20,5 +20,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(loginActivity)
             }
 
+            binding.singUpButton.setOnClickListener{
+                var singupActivity: Intent = Intent(applicationContext, SingupActivity::class.java)
+                startActivity(singupActivity)
+            }
+
         }
 }
