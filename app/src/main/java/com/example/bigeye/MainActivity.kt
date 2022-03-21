@@ -16,12 +16,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
             binding.loginButton.setOnClickListener{
-                var loginActivity: Intent = Intent(applicationContext, LoginActivity::class.java)
+                val loginActivity = Intent(applicationContext, LoginActivity::class.java)
                 startActivity(loginActivity)
             }
 
             binding.singUpButton.setOnClickListener{
-                var singupActivity: Intent = Intent(applicationContext, SingupActivity::class.java)
+                val singupActivity = Intent(applicationContext, SingupActivity::class.java)
                 startActivity(singupActivity)
             }
 
