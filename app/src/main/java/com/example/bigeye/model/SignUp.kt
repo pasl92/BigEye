@@ -1,4 +1,3 @@
 package com.example.bigeye.model
 
-class SignUp {
-}
+data class SignUp (val email: String, val password: String)
