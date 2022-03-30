@@ -29,11 +29,11 @@
         android:fontFamily="@font/poppins_light"
         android:text="@string/your_email_address"
         android:textAppearance="@style/grey_text_login"
-        app:layout_constraintBottom_toTopOf="@+id/emailLogin"
-        app:layout_constraintStart_toStartOf="@+id/emailLogin" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress" />
 
     <EditText
-        android:id="@+id/emailLogin"
+        android:id="@+id/editTextTextEmailAddress"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_marginTop="90dp"
@@ -54,11 +54,11 @@
         android:layout_marginBottom="10dp"
         android:text="@string/your_password"
         android:textAppearance="@style/grey_text_login"
-        app:layout_constraintBottom_toTopOf="@+id/passwordLogin"
-        app:layout_constraintStart_toStartOf="@+id/passwordLogin" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
 
     <EditText
-        android:id="@+id/passwordLogin"
+        android:id="@+id/editTextTextPassword"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_marginTop="90dp"
@@ -68,7 +68,7 @@
         android:textColor="@color/grey_app"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLogin"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
         tools:ignore="LabelFor,SpeakableTextPresentCheck"
         android:autofillHints="" />
 
@@ -81,6 +81,6 @@
         android:text="@string/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
