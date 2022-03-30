@@ -12,16 +12,8 @@ import java.util.*
 
 class MainViewModel(private val repository: Repository): ViewModel() {
 
-    //val myResponse: MutableLiveData<Account> = MutableLiveData()
     val myResponseLogin: MutableLiveData<Response<LoginResponse>> = MutableLiveData()
     val myResponseSignUp: MutableLiveData<Response<Unit>> = MutableLiveData()
-
-    //fun getAccount() {
-    //    viewModelScope.launch {
-    //        val response:Account = repository.getAccount()
-    //        myResponse.value = response
-    //    }
-    //}
 
     fun pushLogin(login: Login) {
         viewModelScope.launch {
@@ -30,7 +22,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         }
     }
 
-    fun pushSignUp(signUp: SignUp) {
+    fun pushSignUp(signUp: SingUp) {
         viewModelScope.launch {
             val response: Response<Unit> = repository.pushSignUp(signUp)
             myResponseSignUp.value = response

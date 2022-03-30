@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.bigeye.databinding.ActivityLoginBinding
 import com.example.bigeye.databinding.ActivitySingupBinding
 import com.example.bigeye.model.Login
-import com.example.bigeye.model.SignUp
+import com.example.bigeye.model.SingUp
 import com.example.bigeye.repository.Repository
 
 class SingupActivity : AppCompatActivity() {
@@ -41,15 +41,16 @@ class SingupActivity : AppCompatActivity() {
             val viewModelFactory = MainViewModelFactory(repository)
             viewModel= ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
 
-            val mySignUp = SignUp(email, password)
+            val mySignUp = SingUp(email, password)
+            Log.d("Main", mySignUp.toString())
             viewModel.pushSignUp(mySignUp)
             viewModel.myResponseSignUp.observe(this, Observer{ response ->
 
                 if(response.isSuccessful){
-                    Log.d("Main", response.toString())
+                    Log.d("Main", response.body().toString())
                     Toast.makeText(this@SingupActivity, "Thanks for login", Toast.LENGTH_LONG).show()
                 }else {
-                    Log.d("Main", response.toString())
+                    Log.d("Main", response.body().toString())
                     Toast.makeText(this@SingupActivity, "Wrong User or Password", Toast.LENGTH_LONG).show()
                 }
 

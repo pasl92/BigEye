@@ -20,6 +20,6 @@ interface BigEyeAPI {
 
     @POST("email-auth/sign-up")
     suspend fun pushSignUp(
-        @Body signUp: SignUp
+        @Body signUp: SingUp
     ): Response<Unit>
 }

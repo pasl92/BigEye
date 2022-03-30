@@ -16,7 +16,7 @@ class Repository {
         return RetrofitInstance.api.pushLogin(login)
     }
 
-    suspend fun pushSignUp(signUp: SignUp): Response<Unit> {
+    suspend fun pushSignUp(signUp: SingUp): Response<Unit> {
         return RetrofitInstance.api.pushSignUp(signUp)
     }
 }
