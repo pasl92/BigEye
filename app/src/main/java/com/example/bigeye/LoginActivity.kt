@@ -22,17 +22,17 @@ class LoginActivity : AppCompatActivity() {
 
         binding.lgButton.setOnClickListener{
 
-            val email = binding.editTextTextEmailAddress.text.toString().trim()
-            val password = binding.editTextTextPassword.text.toString().trim()
+            val email = binding.emailLogin.text.toString().trim()
+            val password = binding.passwordLogin.text.toString().trim()
 
             if(email.isEmpty()){
-                binding.editTextTextEmailAddress.error = "Email required"
-                binding.editTextTextEmailAddress.requestFocus()
+                binding.emailLogin.error = "Email required"
+                binding.emailLogin.requestFocus()
                 return@setOnClickListener
             }
             if(password.isEmpty()){
-                binding.editTextTextPassword.error = "Password required"
-                binding.editTextTextPassword.requestFocus()
+                binding.passwordLogin.error = "Password required"
+                binding.passwordLogin.requestFocus()
                 return@setOnClickListener
             }
 
