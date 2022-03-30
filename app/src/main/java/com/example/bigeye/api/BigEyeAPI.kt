@@ -1,11 +1,10 @@
 package com.example.bigeye.api
 
-import com.example.bigeye.model.Account
-import com.example.bigeye.model.Login
-import com.example.bigeye.model.LoginResponse
+import com.example.bigeye.model.*
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
+import java.util.*
 
 interface BigEyeAPI {
 
@@ -18,4 +17,9 @@ interface BigEyeAPI {
     suspend fun pushLogin(
         @Body login: Login
     ): Response<LoginResponse>
+
+    @POST("email-auth/sign-up")
+    suspend fun pushSignUp(
+        @Body signUp: SignUp
+    ): Response<Unit>
 }

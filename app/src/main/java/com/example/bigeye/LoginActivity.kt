@@ -42,7 +42,8 @@ class LoginActivity : AppCompatActivity() {
 
             val myLogin = Login(email, password)
             viewModel.pushLogin(myLogin)
-            viewModel.myResponse.observe(this,Observer{ response ->
+            viewModel.myResponseLogin.observe(this,Observer{ response ->
+                Log.d("Main", response.toString())
 
                 if(response.isSuccessful){
                     Toast.makeText(this@LoginActivity, "Thanks for login", Toast.LENGTH_LONG).show()
