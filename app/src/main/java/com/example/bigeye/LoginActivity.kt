@@ -1,5 +1,6 @@
 package com.example.bigeye
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -44,9 +45,12 @@ class LoginActivity : AppCompatActivity() {
             viewModel.pushLogin(myLogin)
             viewModel.myResponseLogin.observe(this,Observer{ response ->
                 Log.d("Main", response.toString())
+                Log.d("Main", response.body().toString())
 
                 if(response.isSuccessful){
                     Toast.makeText(this@LoginActivity, "Thanks for login", Toast.LENGTH_LONG).show()
+                    val bigEyeActivity = Intent(applicationContext, BigEyeActivity::class.java)
+                    startActivity(bigEyeActivity)
                 }else {
                     Toast.makeText(this@LoginActivity, "Wrong User or Password", Toast.LENGTH_LONG).show()
                 }

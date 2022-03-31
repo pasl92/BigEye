@@ -45,15 +45,14 @@ class SingupActivity : AppCompatActivity() {
             Log.d("Main", mySignUp.toString())
             viewModel.pushSignUp(mySignUp)
             viewModel.myResponseSignUp.observe(this, Observer{ response ->
+                Log.d("Main", response.toString())
+                Log.d("Main", response.body().toString())
 
                 if(response.isSuccessful){
-                    Log.d("Main", response.body().toString())
                     Toast.makeText(this@SingupActivity, "Thanks for login", Toast.LENGTH_LONG).show()
                 }else {
-                    Log.d("Main", response.body().toString())
                     Toast.makeText(this@SingupActivity, "Wrong User or Password", Toast.LENGTH_LONG).show()
                 }
-
             })
         }
     }

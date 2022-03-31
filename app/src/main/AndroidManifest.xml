@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BigEye">
         <activity
+            android:name=".BigEyeActivity"
+            android:exported="false"
+            android:parentActivityName=".BigEyeActivity"/>
+        <activity
             android:name=".SingupActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"/>

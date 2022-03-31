@@ -14,6 +14,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
 
     val myResponseLogin: MutableLiveData<Response<LoginResponse>> = MutableLiveData()
     val myResponseSignUp: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val myResponseUser: MutableLiveData<Response<UserResponse>> = MutableLiveData()
 
     fun pushLogin(login: Login) {
         viewModelScope.launch {
@@ -26,6 +27,13 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         viewModelScope.launch {
             val response: Response<Unit> = repository.pushSignUp(signUp)
             myResponseSignUp.value = response
+        }
+    }
+
+    fun getAccountDetails() {
+        viewModelScope.launch {
+            val response: Response<UserResponse> = repository.getAccountDetails()
+            myResponseUser.value = response
         }
     }
 }
