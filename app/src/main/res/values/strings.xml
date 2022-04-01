@@ -2,6 +2,7 @@
     <!--    Welcome page-->
     <string name="app_name">BigEye</string>
     <string name="login_button">Login</string>
+    <string name="go_to_login_button">Go to Login</string>
     <string name="singup_button">SingUp</string>
     <string name="slogan_text">Keep an eye on your sites wherever you are.</string>
 
@@ -10,6 +11,13 @@
     <string name="your_email_address">Your Email Address</string>
     <string name="your_password">Your password</string>
 
-<!--    SingUp page-->
+    <!--    SingUp page-->
     <string name="singup_with_email">Sing up with email</string>
+
+    <!--    ConfirmEmail page-->
+    <string name="thanks_for_create_account">Thanks for create \naccount.</string>
+    <string name="confirm_email">Confirm your email address.\nWe have sent an email with \na confirmation link to your \nemail address. </string>
+
+    <!--    BigEye page-->
+    <string name="your_websites">Your\nWebsites</string>
 </resources>

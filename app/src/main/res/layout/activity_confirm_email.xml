@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/confirmEmailPage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/thanksEmailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="83dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/thanks_for_create_account"
+        android:textAlignment="center"
+        android:textAppearance="@style/topString"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/infoBigEye"
+        android:layout_width="280dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Confirm your email address.\nWe have sent an email with \na confirmation link to your \nemail address."
+        android:textAlignment="center"
+        android:textColor="@color/black_app"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageBigEye"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageBigEye"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="42dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thanksEmailText"
+        app:srcCompat="@drawable/icon" />
+
+    <Button
+        android:id="@+id/lgButton"
+        style="@style/loginAndSingupBtnStyle"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="61dp"
+        android:text="@string/go_to_login_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

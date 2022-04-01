@@ -1,5 +1,6 @@
 package com.example.bigeye
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -49,7 +50,8 @@ class SingupActivity : AppCompatActivity() {
                 Log.d("Main", response.body().toString())
 
                 if(response.isSuccessful){
-                    Toast.makeText(this@SingupActivity, "Thanks for login", Toast.LENGTH_LONG).show()
+                    val confirmEmailActivity = Intent(applicationContext, ConfirmEmailActivity::class.java)
+                    startActivity(confirmEmailActivity)
                 }else {
                     Toast.makeText(this@SingupActivity, "Wrong User or Password", Toast.LENGTH_LONG).show()
                 }

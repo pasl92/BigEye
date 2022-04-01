@@ -15,7 +15,7 @@
         android:layout_marginTop="100dp"
         android:text="@string/login_with_email"
         android:textAlignment="center"
-        android:textAppearance="@style/login_with_email"
+        android:textAppearance="@style/topString"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

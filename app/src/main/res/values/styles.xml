@@ -73,7 +73,7 @@
 
     </style>
 
-    <style name="login_with_email">
+    <style name="topString">
 
         <item name="android:textSize">
             24sp
