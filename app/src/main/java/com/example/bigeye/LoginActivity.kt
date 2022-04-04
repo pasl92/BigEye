@@ -51,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "Thanks for login", Toast.LENGTH_LONG).show()
                     val bigEyeActivity = Intent(applicationContext, BigEyeActivity::class.java)
                     startActivity(bigEyeActivity)
+                    finishAffinity();
                 }else {
                     Toast.makeText(this@LoginActivity, "Wrong User or Password", Toast.LENGTH_LONG).show()
                 }
