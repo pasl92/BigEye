@@ -56,6 +56,7 @@ class SingUpActivity : AppCompatActivity() {
                         if(response.isSuccessful){
                             val confirmEmailActivity = Intent(applicationContext, ConfirmEmailActivity::class.java)
                             startActivity(confirmEmailActivity)
+                            finishAffinity()
                         } else {
 
                             val parser = JsonParser()

@@ -64,6 +64,7 @@ class LoginActivity : AppCompatActivity() {
                             sessionManager.saveAuthToken(loginResponse.accessToken)
                             val bigEyeActivity = Intent(applicationContext, BigEyeActivity::class.java)
                             startActivity(bigEyeActivity)
+                            finishAffinity()
                         } else {
                             val parser = JsonParser()
                             val gson = Gson()
