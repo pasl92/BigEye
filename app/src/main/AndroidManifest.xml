@@ -16,7 +16,7 @@
             android:exported="false"
             android:parentActivityName=".BigEyeActivity"/>
         <activity
-            android:name=".SingupActivity"
+            android:name=".SingUpActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"/>
         <activity

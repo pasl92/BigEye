@@ -6,7 +6,8 @@ import android.os.Bundle
 import com.example.bigeye.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity() {
+class
+MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +22,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             binding.singUpButton.setOnClickListener{
-                val singupActivity = Intent(applicationContext, SingupActivity::class.java)
-                startActivity(singupActivity)
+                val singUpActivity = Intent(applicationContext, SingUpActivity::class.java)
+                startActivity(singUpActivity)
             }
 
         }

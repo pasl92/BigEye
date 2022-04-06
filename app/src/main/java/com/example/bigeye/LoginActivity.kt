@@ -5,24 +5,38 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import com.example.bigeye.api.ApiClient
+import com.example.bigeye.api.ApiService
+import com.example.bigeye.api.SessionManager
 import com.example.bigeye.databinding.ActivityLoginBinding
-import com.example.bigeye.model.Login
-import com.example.bigeye.repository.Repository
+import com.example.bigeye.model.LoginRequest
+import com.example.bigeye.model.LoginResponse
+import com.example.bigeye.model.SignUpResponse
+import com.example.bigeye.model.UserResponse
+import com.google.gson.Gson
+import com.google.gson.JsonElement
+import com.google.gson.JsonParser
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var sessionManager: SessionManager
+    private lateinit var apiClient: ApiClient
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.lgButton.setOnClickListener{
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
 
+
+
+        binding.lgButton.setOnClickListener{
             val email = binding.editTextTextEmailAddress.text.toString().trim()
             val password = binding.editTextTextPassword.text.toString().trim()
 
@@ -37,26 +51,31 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val repository = Repository()
-            val viewModelFactory = MainViewModelFactory(repository)
-            viewModel=ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
+            apiClient.getApiService().login(LoginRequest(email = email, password = password))
+                .enqueue(object : Callback<LoginResponse> {
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        Log.d("main", t.toString())
+                    }
 
-            val myLogin = Login(email, password)
-            viewModel.pushLogin(myLogin)
-            viewModel.myResponseLogin.observe(this,Observer{ response ->
-                Log.d("Main", response.toString())
-                Log.d("Main", response.body().toString())
+                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                        val loginResponse = response.body()
 
-                if(response.isSuccessful){
-                    Toast.makeText(this@LoginActivity, "Thanks for login", Toast.LENGTH_LONG).show()
-                    val bigEyeActivity = Intent(applicationContext, BigEyeActivity::class.java)
-                    startActivity(bigEyeActivity)
-                    finishAffinity();
-                }else {
-                    Toast.makeText(this@LoginActivity, "Wrong User or Password", Toast.LENGTH_LONG).show()
-                }
+                        if (loginResponse != null) {
+                            sessionManager.saveAuthToken(loginResponse.accessToken)
+                            val bigEyeActivity = Intent(applicationContext, BigEyeActivity::class.java)
+                            startActivity(bigEyeActivity)
+                        } else {
+                            val parser = JsonParser()
+                            val gson = Gson()
 
-            })
+                            var mJson: JsonElement? = parser.parse(response.errorBody()!!.string())
+                            val errorResponse: LoginResponse = gson.fromJson(mJson, LoginResponse::class.java)
+                            Toast.makeText(this@LoginActivity, errorResponse.errorDetails, Toast.LENGTH_LONG).show()
+                            Log.d("main", errorResponse.errorDetails)
+                        }
+                    }
+                })
         }
     }
+
 }
