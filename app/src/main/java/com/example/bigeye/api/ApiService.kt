@@ -15,6 +15,11 @@ interface ApiService {
     @GET("monitor/list")
     fun getMonitorList(@Header("Authorization") token: String): Call<MonitorListResponse>
 
+    @GET("monitor/{id}")
+    fun getMonitorId(@Header("Authorization") token: String,
+                     @Path("id") id: String
+    ): Call<MonitorIdResponse>
+
     @POST("identity/email-auth/sign-up")
     fun pushSignUp(@Body request: SignUpRequest): Call<Unit>
 
