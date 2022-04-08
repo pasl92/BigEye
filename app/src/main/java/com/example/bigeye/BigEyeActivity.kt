@@ -67,9 +67,7 @@ class BigEyeActivity : AppCompatActivity() {
                             myAdapter = MyAdapter(response.body()!!)
                             layoutManager = manager
                             adapter = myAdapter
-
                             getDataMonitorById(monitorList)
-
                         }
                     }
                 }
@@ -78,41 +76,51 @@ class BigEyeActivity : AppCompatActivity() {
 
     private fun getDataMonitorById(monitorList:Response<MonitorListResponse>) {
 
-        apiClient.getApiService().getMonitorId(
-            token = "Bearer ${sessionManager.fetchAuthToken()}",
-            id = monitorList.body()?.monitors?.get(0)?.id.toString()
-        )
-            .enqueue(object : Callback<MonitorIdResponse> {
-                override fun onFailure(call: Call<MonitorIdResponse>, t: Throwable) {
+        if (monitorList.body()?.monitors?.isEmpty() == false) {
 
-                }
-
-                override fun onResponse(
-                    call: Call<MonitorIdResponse>,
-                    response: Response<MonitorIdResponse>
-                ) {
-
-                    if (response.isSuccessful) {
-                        Log.d("Main", response.toString())
-                        Log.d("Main", response.body().toString())
+            apiClient.getApiService().getMonitorId(
+                token = "Bearer ${sessionManager.fetchAuthToken()}",
+                id = monitorList.body()?.monitors?.get(0)?.id.toString()
+            )
+                .enqueue(object : Callback<MonitorIdResponse> {
+                    override fun onFailure(call: Call<MonitorIdResponse>, t: Throwable) {
 
                     }
 
-                    val mainNaneMonitor: String = response.body()?.name.toString()
-                    val detailsFullAdressMonitor: String = response.body()?.configuration?.address.toString()
-                    val detailsAverageResponse: String = response.body()?.status?.averageResponseTime.toString()
-                    val detailsStatus: String = response.body()?.status?.status.toString()
+                    override fun onResponse(
+                        call: Call<MonitorIdResponse>,
+                        response: Response<MonitorIdResponse>
+                    ) {
 
-                    if (mainNaneMonitor != null) {
-                        binding.textView6.setText(mainNaneMonitor)
-                        binding.textView7.setText(detailsFullAdressMonitor)
-                        binding.textView9.setText("timeout: " + detailsAverageResponse)
-                        binding.textView10.setText("status: " + detailsStatus)
-                        Log.d("main", mainNaneMonitor)
-                    } else {
-                        //test
+                        if (response.isSuccessful) {
+                            Log.d("Main", response.toString())
+                            Log.d("Main", response.body().toString())
+
+                        }
+
+                        val mainNaneMonitor: String = response.body()?.name.toString()
+                        val detailsFullAdressMonitor: String =
+                            response.body()?.configuration?.address.toString()
+                        val detailsAverageResponse: String =
+                            response.body()?.status?.averageResponseTime.toString()
+                        val detailsStatus: String = response.body()?.status?.status.toString()
+
+                        if (mainNaneMonitor != null) {
+                            binding.textView6.setText(mainNaneMonitor)
+                            binding.textView7.setText(detailsFullAdressMonitor)
+                            binding.textView9.setText("timeout: " + detailsAverageResponse)
+                            binding.textView10.setText("status: " + detailsStatus)
+                            Log.d("main", mainNaneMonitor)
+                        } else {
+                            //test
+                        }
                     }
-                }
-            })
+                })
+        }else{
+            binding.textView6.setText("Set monitor")
+            binding.textView7.setText("name: -")
+            binding.textView9.setText("timeout: -" )
+            binding.textView10.setText("status: - ")
+        }
     }
 }

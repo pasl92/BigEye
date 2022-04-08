@@ -1,12 +1,13 @@
 package com.example.bigeye
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bigeye.model.Monitor
-import com.bumptech.glide.Glide
 import com.example.bigeye.model.MonitorListResponse
 
 
@@ -16,6 +17,17 @@ class MyAdapter(private val data: MonitorListResponse) : RecyclerView.Adapter<My
         fun bind(monitor: Monitor){
             val title = view.findViewById<TextView>(R.id.monitorName)
             title.text = monitor.name
+
+            val imageStatus = view.findViewById<ImageView>(R.id.imageMonitorStatus)
+            if(monitor.status.status == "Ok"){
+                imageStatus.setColorFilter(Color.GREEN)
+            } else if(monitor.status.status == "Warning"){
+                imageStatus.setColorFilter(Color.YELLOW)
+            } else if(monitor.status.status == "Error"){
+                imageStatus.setColorFilter(Color.RED)
+            } else{
+                imageStatus.setColorFilter(Color.GRAY)
+            }
         }
     }
 

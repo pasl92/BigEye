@@ -9,13 +9,6 @@ data class MonitorIdResponse (
     var configuration : Configuration
 )
 
-data class Status (
-
-    var status : String,
-    var averageResponseTime : Int,
-    var additionalInfo : String
-)
-
 data class Configuration (
 
     var address : String,
