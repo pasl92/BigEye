@@ -1,5 +1,6 @@
 package com.example.bigeye
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -36,6 +37,11 @@ class BigEyeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBigeyeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.buttonAdd.setOnClickListener{
+            val addMonitorActivity = Intent(applicationContext, AddMonitorActivity::class.java)
+            startActivity(addMonitorActivity)
+        }
 
         apiClient = ApiClient()
         sessionManager = SessionManager(this)

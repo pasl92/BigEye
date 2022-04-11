@@ -9,6 +9,9 @@ interface ApiService {
     @POST("identity/email-auth/sign-in")
     fun login(@Body request: LoginRequest): Call<LoginResponse>
 
+    @POST("identity/email-auth/sign-up")
+    fun pushSignUp(@Body request: SignUpRequest): Call<Unit>
+
     @GET("identity/account/details")
     fun getAccountDetails(@Header("Authorization") token: String): Call<UserResponse>
 
@@ -20,7 +23,7 @@ interface ApiService {
                      @Path("id") id: String
     ): Call<MonitorIdResponse>
 
-    @POST("identity/email-auth/sign-up")
-    fun pushSignUp(@Body request: SignUpRequest): Call<Unit>
-
+    @POST("monitor")
+    fun postNewMonitor(@Header("Authorization") token: String,
+                       @Body request: AddMonitorRequest): Call<AddMonitorResponse>
 }

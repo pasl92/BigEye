@@ -20,4 +20,15 @@
 
     <!--    BigEye page-->
     <string name="your_websites">Your\nWebsites</string>
+
+    <!--    AddMonitor page-->
+    <string name="add_monitor_text">Add new monitor</string>
+    <string name="name_monitor_text">Name</string>
+    <string name="description_monitor_text">Description</string>
+    <string name="address_monitor_text">Address</string>
+    <string name="port_monitor_text">Port</string>
+    <string name="timeout_monitor_text">Timeuot</string>
+    <string name="success_response_code_monitor_text">Success response code</string>
+    <string name="period_monitor_text">Period</string>
+    <string name="add_monitor_text_button">Add monitor</string>
 </resources>
