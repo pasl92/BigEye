@@ -58,13 +58,14 @@ class BigEyeActivity : AppCompatActivity() {
                 ) {
 
                     if (response.isSuccessful) {
-                        Log.d("Main", response.toString())
-                        Log.d("Main", response.body().toString())
-
                         val monitorList = response
-
                         recyclerView = findViewById<RecyclerView>(R.id.recycler_view).apply {
-                            myAdapter = MyAdapter(response.body()!!)
+                            myAdapter = MyAdapter(response.body()!!){monitor ->
+                                binding.mainTitle.setText(monitor.name)
+                                binding.monitorDescriptioneTextView.setText(monitor.description)
+                                binding.monitorTimeOutTextView.setText("timeout: " + monitor.status.averageResponseTime)
+                                binding.monitorStatusTextView.setText("status: " + monitor.status.status)
+                            }
                             layoutManager = manager
                             adapter = myAdapter
                             getDataMonitorById(monitorList)
@@ -97,7 +98,6 @@ class BigEyeActivity : AppCompatActivity() {
                             Log.d("Main", response.body().toString())
 
                         }
-
                         val mainNaneMonitor: String = response.body()?.name.toString()
                         val detailsFullAdressMonitor: String =
                             response.body()?.configuration?.address.toString()
@@ -106,10 +106,10 @@ class BigEyeActivity : AppCompatActivity() {
                         val detailsStatus: String = response.body()?.status?.status.toString()
 
                         if (mainNaneMonitor != null) {
-                            binding.textView6.setText(mainNaneMonitor)
-                            binding.textView7.setText(detailsFullAdressMonitor)
-                            binding.textView9.setText("timeout: " + detailsAverageResponse)
-                            binding.textView10.setText("status: " + detailsStatus)
+                            binding.mainTitle.setText(mainNaneMonitor)
+                            binding.monitorDescriptioneTextView.setText(detailsFullAdressMonitor)
+                            binding.monitorTimeOutTextView.setText("timeout: " + detailsAverageResponse)
+                            binding.monitorStatusTextView.setText("status: " + detailsStatus)
                             Log.d("main", mainNaneMonitor)
                         } else {
                             //test
@@ -117,10 +117,10 @@ class BigEyeActivity : AppCompatActivity() {
                     }
                 })
         }else{
-            binding.textView6.setText("Set monitor")
-            binding.textView7.setText("name: -")
-            binding.textView9.setText("timeout: -" )
-            binding.textView10.setText("status: - ")
+            binding.mainTitle.setText("Set monitor")
+            binding.monitorDescriptioneTextView.setText("name: -")
+            binding.monitorTimeOutTextView.setText("timeout: -" )
+            binding.monitorStatusTextView.setText("status: - ")
         }
     }
 }
