@@ -31,4 +31,10 @@
     <string name="success_response_code_monitor_text">Success response code</string>
     <string name="period_monitor_text">Period</string>
     <string name="add_monitor_text_button">Add monitor</string>
+
+    <!--    Menu fragment-->
+    <string name="logout">Logout</string>
+    <string name="logout_all">Logout from all devices</string>
+    <string name="go_to_web">BigEye websites</string>
+
 </resources>

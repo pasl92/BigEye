@@ -6,12 +6,12 @@ import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bigeye.databinding.ActivityBigeyeBinding
 import com.example.bigeye.model.Monitor
 import com.example.bigeye.model.MonitorListResponse
 
@@ -39,6 +39,7 @@ class MyAdapter(private val data: MonitorListResponse, private val callback: (Mo
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val monitorLayout = LayoutInflater.from(parent.context).inflate(R.layout.monitor_list, parent, false)
+
         return MyViewHolder(monitorLayout)
 
     }
@@ -52,6 +53,11 @@ class MyAdapter(private val data: MonitorListResponse, private val callback: (Mo
         holder.viewMonitor.setOnClickListener {
             callback(data.monitors[position])
         }
-    }
 
+        holder.viewMonitor.setOnLongClickListener{
+            Log.d("main", "to jest monitor " + data.monitors[position].name)
+
+            true
+        }
+    }
 }

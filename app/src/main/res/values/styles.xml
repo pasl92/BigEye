@@ -137,7 +137,7 @@
     <style name="mainAppName">
 
         <item name="android:textSize">
-            32sp
+            30sp
         </item>
 
         <item name="android:letterSpacing">

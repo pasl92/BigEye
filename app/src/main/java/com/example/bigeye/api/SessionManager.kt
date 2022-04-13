@@ -2,9 +2,10 @@ package com.example.bigeye.api
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.bigeye.MenuFragment
 import com.example.bigeye.R
 
-class SessionManager (context: Context) {
+class SessionManager(context: Context) {
     private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
 
     companion object {

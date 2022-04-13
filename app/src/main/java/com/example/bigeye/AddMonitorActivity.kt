@@ -29,6 +29,7 @@ class AddMonitorActivity: AppCompatActivity() {
         apiClient = ApiClient()
         sessionManager = SessionManager(this)
 
+
         binding.addMonitorButton.setOnClickListener{
             val name = binding.nameInputText.text.toString().trim()
             val description = binding.descriptionInputText.text.toString().trim()

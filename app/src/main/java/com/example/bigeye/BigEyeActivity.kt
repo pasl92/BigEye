@@ -12,11 +12,6 @@ import com.example.bigeye.api.SessionManager
 import com.example.bigeye.databinding.ActivityBigeyeBinding
 import com.example.bigeye.model.MonitorIdResponse
 import com.example.bigeye.model.MonitorListResponse
-import com.example.bigeye.model.SignUpResponse
-import com.example.bigeye.model.UserResponse
-import com.google.gson.Gson
-import com.google.gson.JsonElement
-import com.google.gson.JsonParser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,6 +32,16 @@ class BigEyeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBigeyeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.buttonMenu.setOnClickListener {
+            val menuFragment = MenuFragment()
+            menuFragment.show(supportFragmentManager, "menuFragment")
+        }
+
+        binding.buttonMenu.setOnLongClickListener{
+            Log.d("main", "press działa")
+            true
+        }
 
         binding.buttonAdd.setOnClickListener{
             val addMonitorActivity = Intent(applicationContext, AddMonitorActivity::class.java)
