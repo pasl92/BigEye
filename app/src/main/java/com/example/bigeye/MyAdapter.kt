@@ -1,5 +1,7 @@
 package com.example.bigeye
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.Intent.*
 import android.graphics.Color
@@ -10,13 +12,24 @@ import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bigeye.model.Monitor
-import com.example.bigeye.model.MonitorListResponse
+import com.example.bigeye.api.ApiClient
+import com.example.bigeye.api.SessionManager
+import com.example.bigeye.model.*
+import com.google.gson.Gson
+import com.google.gson.JsonElement
+import com.google.gson.JsonParser
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-class MyAdapter(private val data: MonitorListResponse, private val callback: (Monitor) -> Unit) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(private val data: MonitorListResponse, private val context: Context, private val callback: (Monitor) -> Unit ) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+
+    private lateinit var sessionManager: SessionManager
+    private lateinit var apiClient: ApiClient
 
     class MyViewHolder(val viewMonitor: View): RecyclerView.ViewHolder(viewMonitor){
 
@@ -41,7 +54,6 @@ class MyAdapter(private val data: MonitorListResponse, private val callback: (Mo
         val monitorLayout = LayoutInflater.from(parent.context).inflate(R.layout.monitor_list, parent, false)
 
         return MyViewHolder(monitorLayout)
-
     }
 
     override fun getItemCount(): Int {
@@ -49,15 +61,34 @@ class MyAdapter(private val data: MonitorListResponse, private val callback: (Mo
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+        apiClient = ApiClient()
+        sessionManager = SessionManager(context)
+
         holder.bind(data.monitors[position])
         holder.viewMonitor.setOnClickListener {
             callback(data.monitors[position])
         }
 
         holder.viewMonitor.setOnLongClickListener{
-            Log.d("main", "to jest monitor " + data.monitors[position].name)
 
+            apiClient.getApiService()
+                .deleteMonitorId(token = "Bearer ${sessionManager.fetchAuthToken()}", id = data.monitors[position].id)
+                .enqueue(object : Callback<MonidorDeleteResponse> {
+                    override fun onFailure(call: Call<MonidorDeleteResponse>, t: Throwable) {
+                        Log.d("main", "nie działa")
+                    }
+
+                    override fun onResponse(call: Call<MonidorDeleteResponse>, response: Response<MonidorDeleteResponse>) {
+                        if (response.isSuccessful) {
+                            Toast.makeText(context, "Monitor " + "\"" +data.monitors[position].name + "\"" + " has been deleted", Toast.LENGTH_LONG).show()
+                        }else{
+                            Toast.makeText(context, data.errorDetails.toString(), Toast.LENGTH_LONG).show()
+                        }
+                    }
+                })
             true
         }
     }
 }
+

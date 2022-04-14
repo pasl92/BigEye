@@ -71,7 +71,7 @@ class BigEyeActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val monitorList = response
                         recyclerView = findViewById<RecyclerView>(R.id.recycler_view).apply {
-                            myAdapter = MyAdapter(response.body()!!){monitor ->
+                            myAdapter = MyAdapter(response.body()!!, context = this.context){monitor ->
                                 binding.mainTitle.setText(monitor.name)
                                 binding.monitorDescriptioneTextView.setText(monitor.description)
                                 binding.monitorTimeOutTextView.setText("timeout: " + monitor.status.averageResponseTime)
@@ -93,8 +93,7 @@ class BigEyeActivity : AppCompatActivity() {
             apiClient.getApiService().getMonitorId(
                 token = "Bearer ${sessionManager.fetchAuthToken()}",
                 id = monitorList.body()?.monitors?.get(0)?.id.toString()
-            )
-                .enqueue(object : Callback<MonitorIdResponse> {
+            ).enqueue(object : Callback<MonitorIdResponse> {
                     override fun onFailure(call: Call<MonitorIdResponse>, t: Throwable) {
 
                     }

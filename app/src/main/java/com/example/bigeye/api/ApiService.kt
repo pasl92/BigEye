@@ -23,6 +23,11 @@ interface ApiService {
                      @Path("id") id: String
     ): Call<MonitorIdResponse>
 
+    @DELETE("monitor/{id}")
+    fun deleteMonitorId(@Header("Authorization") token: String,
+                        @Path("id") id: String
+    ): Call<MonidorDeleteResponse>
+
     @POST("monitor")
     fun postNewMonitor(@Header("Authorization") token: String,
                        @Body request: AddMonitorRequest): Call<AddMonitorResponse>
