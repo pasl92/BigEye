@@ -16,9 +16,11 @@ import com.example.bigeye.model.UserResponse
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.JsonParser
+import com.orhanobut.logger.Logger
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 
 class LoginActivity : AppCompatActivity() {
@@ -51,10 +53,10 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            apiClient.getApiService().login(LoginRequest(email = email, password = password))
+            val request = apiClient.getApiService().login(LoginRequest(email = email, password = password))
                 .enqueue(object : Callback<LoginResponse> {
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                        Log.d("main", t.toString())
+
                     }
 
                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
@@ -72,11 +74,9 @@ class LoginActivity : AppCompatActivity() {
                             var mJson: JsonElement? = parser.parse(response.errorBody()!!.string())
                             val errorResponse: LoginResponse = gson.fromJson(mJson, LoginResponse::class.java)
                             Toast.makeText(this@LoginActivity, errorResponse.errorDetails, Toast.LENGTH_LONG).show()
-                            Log.d("main", errorResponse.errorDetails)
                         }
                     }
                 })
         }
     }
-
 }

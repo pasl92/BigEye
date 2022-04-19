@@ -3,6 +3,8 @@ package com.example.bigeye.api
 import com.example.bigeye.util.Constants.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
+import java.util.logging.Logger
 
 
 class ApiClient {

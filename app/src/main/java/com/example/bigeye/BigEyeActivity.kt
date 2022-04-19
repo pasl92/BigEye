@@ -15,6 +15,7 @@ import com.example.bigeye.model.MonitorListResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 
 class BigEyeActivity : AppCompatActivity() {
@@ -30,6 +31,7 @@ class BigEyeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityBigeyeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -13,6 +13,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.finishAffinity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bigeye.api.ApiClient
@@ -81,6 +83,8 @@ class MyAdapter(private val data: MonitorListResponse, private val context: Cont
 
                     override fun onResponse(call: Call<MonidorDeleteResponse>, response: Response<MonidorDeleteResponse>) {
                         if (response.isSuccessful) {
+
+
                             Toast.makeText(context, "Monitor " + "\"" +data.monitors[position].name + "\"" + " has been deleted", Toast.LENGTH_LONG).show()
                         }else{
                             Toast.makeText(context, data.errorDetails.toString(), Toast.LENGTH_LONG).show()
