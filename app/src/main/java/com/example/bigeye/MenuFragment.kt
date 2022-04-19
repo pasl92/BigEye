@@ -59,7 +59,19 @@ class MenuFragment: DialogFragment() {
                         true
                     }
                     binding.logoutAllButton.setOnClickListener {
-                        Toast.makeText(requireActivity(), responseUser?.accountId, Toast.LENGTH_LONG).show()
+                        apiClient.getApiService().pushSignOutAll(token = "Bearer ${sessionManager.fetchAuthToken()}",
+                            SignOutRequest(refreshToken = refreshSessionManager.fetchRefreshToken().toString())).enqueue(object : Callback<SignOutResponse> {
+                            override fun onFailure(call: Call<SignOutResponse>, t: Throwable) {
+
+                            }
+                            override fun onResponse(call: Call<SignOutResponse>, response: Response<SignOutResponse>){
+                                activity?.finish()
+                                val mainActivity = Intent(context, MainActivity::class.java)
+                                startActivity(mainActivity)
+                            }
+                        })
+
+                        Toast.makeText(requireActivity(), "User logged out from all devices", Toast.LENGTH_LONG).show()
                         true
                     }
                     binding.logoutButton .setOnClickListener {

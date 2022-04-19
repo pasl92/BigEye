@@ -16,6 +16,10 @@ interface ApiService {
     fun pushSignOut(@Header("Authorization") token: String,
                     @Body request: SignOutRequest): Call<SignOutResponse>
 
+    @POST("identity/auth/sign-out/all")
+    fun pushSignOutAll(@Header("Authorization") token: String,
+                    @Body request: SignOutRequest): Call<SignOutResponse>
+
     @GET("identity/account/details")
     fun getAccountDetails(@Header("Authorization") token: String): Call<UserResponse>
 
