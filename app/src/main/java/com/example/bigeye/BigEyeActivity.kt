@@ -3,7 +3,6 @@ package com.example.bigeye
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,6 @@ import com.example.bigeye.model.MonitorListResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 
 
 class BigEyeActivity : AppCompatActivity() {
@@ -31,6 +29,11 @@ class BigEyeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        apiClient = ApiClient()
+        sessionManager = SessionManager(this)
+        manager = LinearLayoutManager(this)
+        fetchPosts()
 
         binding = ActivityBigeyeBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -50,10 +53,14 @@ class BigEyeActivity : AppCompatActivity() {
             startActivity(addMonitorActivity)
         }
 
-        apiClient = ApiClient()
-        sessionManager = SessionManager(this)
-        manager = LinearLayoutManager(this)
-        fetchPosts()
+        binding.buttonAdd.setOnLongClickListener{
+            finish()
+            overridePendingTransition(0, 0);
+            startActivity(getIntent())
+            true
+        }
+
+
     }
 
     private fun fetchPosts() {

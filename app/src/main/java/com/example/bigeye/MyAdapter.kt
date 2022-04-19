@@ -8,21 +8,15 @@ import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.core.content.ContextCompat.startActivity
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bigeye.api.ApiClient
 import com.example.bigeye.api.SessionManager
 import com.example.bigeye.model.*
-import com.google.gson.Gson
-import com.google.gson.JsonElement
-import com.google.gson.JsonParser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,7 +56,7 @@ class MyAdapter(private val data: MonitorListResponse, private val context: Cont
         return data.monitors.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, @SuppressLint("RecyclerView") position: Int) {
 
         apiClient = ApiClient()
         sessionManager = SessionManager(context)
@@ -73,7 +67,6 @@ class MyAdapter(private val data: MonitorListResponse, private val context: Cont
         }
 
         holder.viewMonitor.setOnLongClickListener{
-
             apiClient.getApiService()
                 .deleteMonitorId(token = "Bearer ${sessionManager.fetchAuthToken()}", id = data.monitors[position].id)
                 .enqueue(object : Callback<MonidorDeleteResponse> {
@@ -83,7 +76,9 @@ class MyAdapter(private val data: MonitorListResponse, private val context: Cont
 
                     override fun onResponse(call: Call<MonidorDeleteResponse>, response: Response<MonidorDeleteResponse>) {
                         if (response.isSuccessful) {
-
+                            (context as BigEyeActivity).finish()
+                            val intent = Intent(context, BigEyeActivity::class.java)
+                            context.startActivity(intent);
 
                             Toast.makeText(context, "Monitor " + "\"" +data.monitors[position].name + "\"" + " has been deleted", Toast.LENGTH_LONG).show()
                         }else{

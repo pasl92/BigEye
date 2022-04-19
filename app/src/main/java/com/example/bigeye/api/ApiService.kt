@@ -12,6 +12,10 @@ interface ApiService {
     @POST("identity/email-auth/sign-up")
     fun pushSignUp(@Body request: SignUpRequest): Call<Unit>
 
+    @POST("identity/auth/sign-out")
+    fun pushSignOut(@Header("Authorization") token: String,
+                    @Body request: SignOutRequest): Call<SignOutResponse>
+
     @GET("identity/account/details")
     fun getAccountDetails(@Header("Authorization") token: String): Call<UserResponse>
 
