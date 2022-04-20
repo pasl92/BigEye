@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "634686409047",
+    "project_id": "bigeye-51c9e",
+    "storage_bucket": "bigeye-51c9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634686409047:android:1c6e13e0f75b184df61612",
+        "android_client_info": {
+          "package_name": "com.example.bigeye"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634686409047-6lm4q09hkssqsegv364evvq3es2c04aj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjx2Nsb5aSpjXISwPo3iAtPi_dcsaRzXU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634686409047-6lm4q09hkssqsegv364evvq3es2c04aj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
