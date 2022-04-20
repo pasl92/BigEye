@@ -49,21 +49,36 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:hint="@string/name_monitor_text" />
+            android:hint="@string/name_monitor_text"
+            android:ems="10"
+            android:textColorHint="@color/light_grey_app"
+            android:backgroundTint="@color/grey_app"
+            android:textColorHighlight="@color/light_grey_app"
+            android:textColor="@color/grey_app"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descriptionInputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:hint="@string/description_monitor_text" />
+            android:hint="@string/description_monitor_text"
+            android:ems="10"
+            android:textColorHint="@color/light_grey_app"
+            android:backgroundTint="@color/grey_app"
+            android:textColorHighlight="@color/light_grey_app"
+            android:textColor="@color/grey_app"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/addressInputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:hint="@string/address_monitor_text" />
+            android:hint="@string/address_monitor_text"
+            android:ems="10"
+            android:textColorHint="@color/light_grey_app"
+            android:backgroundTint="@color/grey_app"
+            android:textColorHighlight="@color/light_grey_app"
+            android:textColor="@color/grey_app"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/portInputText"
@@ -71,7 +86,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="@string/port_monitor_text"
-            android:inputType="number" />
+            android:inputType="number"
+            android:ems="10"
+            android:textColorHint="@color/light_grey_app"
+            android:backgroundTint="@color/grey_app"
+            android:textColorHighlight="@color/light_grey_app"
+            android:textColor="@color/grey_app"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/timeoutInputText"
@@ -79,7 +99,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="@string/timeout_monitor_text"
-            android:inputType="number" />
+            android:inputType="number"
+            android:ems="10"
+            android:textColorHint="@color/light_grey_app"
+            android:backgroundTint="@color/grey_app"
+            android:textColorHighlight="@color/light_grey_app"
+            android:textColor="@color/grey_app"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/responseCodeInputText"
@@ -87,7 +112,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="@string/success_response_code_monitor_text"
-            android:inputType="number" />
+            android:inputType="number"
+            android:ems="10"
+            android:textColorHint="@color/light_grey_app"
+            android:backgroundTint="@color/grey_app"
+            android:textColorHighlight="@color/light_grey_app"
+            android:textColor="@color/grey_app"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/periodInputText"
@@ -95,7 +125,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="@string/period_monitor_text"
-            android:inputType="number" />
+            android:inputType="number"
+            android:ems="10"
+            android:textColorHint="@color/light_grey_app"
+            android:backgroundTint="@color/grey_app"
+            android:textColorHighlight="@color/light_grey_app"
+            android:textColor="@color/grey_app"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
