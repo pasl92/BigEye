@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import com.example.bigeye.api.ApiClient
 import com.example.bigeye.api.ApiService
 import com.example.bigeye.api.RefreshSessionManager
@@ -26,21 +30,16 @@ import kotlin.math.log
 
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var sessionManager: SessionManager
-    private lateinit var refreshSessionManager: RefreshSessionManager
-    private lateinit var apiClient: ApiClient
+
     private lateinit var binding: ActivityLoginBinding
+    lateinit var viewModel: LoginActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        apiClient = ApiClient()
-        sessionManager = SessionManager(this)
-        refreshSessionManager = RefreshSessionManager(this)
-
-
+        initViewModel()
 
         binding.lgButton.setOnClickListener{
             val email = binding.editTextTextEmailAddress.text.toString().trim()
@@ -57,32 +56,22 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val request = apiClient.getApiService().login(LoginRequest(email = email, password = password))
-                .enqueue(object : Callback<LoginResponse> {
-                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+            viewModel.pushLogin(LoginRequest(email, password))
 
-                    }
-
-                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                        val loginResponse = response.body()
-
-                        if (loginResponse != null) {
-                            Log.d("main", response.body().toString())
-                            sessionManager.saveAuthToken(loginResponse.accessToken)
-                            refreshSessionManager.saveRefreshToken(loginResponse.refreshToken)
-                            val bigEyeActivity = Intent(applicationContext, BigEyeActivity::class.java)
-                            startActivity(bigEyeActivity)
-                            finishAffinity()
-                        } else {
-                            val parser = JsonParser()
-                            val gson = Gson()
-
-                            var mJson: JsonElement? = parser.parse(response.errorBody()!!.string())
-                            val errorResponse: LoginResponse = gson.fromJson(mJson, LoginResponse::class.java)
-                            Toast.makeText(this@LoginActivity, errorResponse.errorDetails, Toast.LENGTH_LONG).show()
-                        }
-                    }
-                })
         }
+    }
+
+    private fun initViewModel(){
+        viewModel = ViewModelProvider(this).get(LoginActivityViewModel::class.java)
+        viewModel.getLoginObserver().observe(this, Observer <LoginResponse> {
+            
+            if (it == null){
+                Toast.makeText(this, viewModel.loginLiveData.value.toString(), Toast.LENGTH_SHORT).show()
+            } else{
+                val bigEyeActivity = Intent(this, BigEyeActivity::class.java)
+                startActivity(bigEyeActivity)
+                finishAffinity()
+            }
+        })
     }
 }
